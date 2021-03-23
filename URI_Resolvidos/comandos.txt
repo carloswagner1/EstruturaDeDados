@@ -1,0 +1,13 @@
+// só compilar a Implementação
+gcc  pImpRac.c -c -lm -Wall
+
+//copiar typedef e os protótipos das funções para o cliente e só compilar
+gcc pCliRac.c -c -lm -Wall
+
+//agora compilar e linkar
+gcc pCliRac.o pImpRac.o -o pRac.exe
+
+./pRac.exe
+
+
+Separar o arquivo de interface
