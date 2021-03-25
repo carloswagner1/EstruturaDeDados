@@ -1,25 +1,26 @@
+/*Autor: Carlos Wagner Rodrigues da Silva*/
+
 /*Arquivo Fonte Header - lista de funcionários*/
 
 
-/*Structs*/
+/*Structs-Typedefs*/
 struct regFunc {
 	int codigo; 
-	char nome[30]; 
-	double salario;
+	char nome[31]; 
+	float salario;
 	struct regFunc *prox;
 };
 
 typedef struct regFunc TNo;
 
-/*Descritores*/
 typedef struct {
 	TNo *inicio, *final; 
 	int qtde;
-	float somaSalario;
+	float totalSalario;
 } TDescr;
 
-/*Funções*/
+/*Prototipos de Funcoes*/
 void InicializaLista(TDescr *);
-int Inclusao(TDescr *, int);
-int Exclusao(TDescr *, int);
+int IncluiFuncionario(TDescr *, int);
 void ImprimeLista(TDescr *, char *);
+int ExcluiFuncionario(TDescr *, int);

@@ -1,14 +1,18 @@
-//Autor: Carlos Wagner Rodrigues da Silva
+/*Autor: Carlos Wagner Rodrigues da Silva*/
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
 
+#define TRUE 1
+#define FALSE 0
+
+/*Structs-Typedefs*/
 struct regFunc {
 	int codigo; 
-	char nome[30]; 
-	double salario;
+	char nome[31]; 
+	float salario;
 	struct regFunc *prox;
 };
 
@@ -17,13 +21,14 @@ typedef struct regFunc TNo;
 typedef struct {
 	TNo *inicio, *final; 
 	int qtde;
-	float somaSalario;
+	float totalSalario;
 } TDescr;
 
+/*Prototipos de Funcoes*/
 void InicializaLista(TDescr *);
-int Inclusao(TDescr *, int);
-int Exclusao(TDescr *, int);
+int IncluiFuncionario(TDescr *, int);
 void ImprimeLista(TDescr *, char *);
+int ExcluiFuncionario(TDescr *, int);
 
 int main (void){
 	int codigo;
@@ -34,32 +39,35 @@ int main (void){
 
 	printf("\n---- Lista 01 - Exercicio 01 ----\n");
 
-	while (1){
+	/*inclui funcionarios*/
+	while (TRUE){
 		printf("\nInforme o codigo do funcionario (ou < 0 para encerrar):\n");
 		scanf("%d", &codigo);
 
 		if (codigo < 0)
 			break;
 
-		if (Inclusao(&lista, codigo) == 0){
-			puts("Memória insuficiente.");
-			break;
+		if (IncluiFuncionario(&lista, codigo) == FALSE){
+			puts("Memória insuficiente para a operacao.");
+			return 3;
 		}
 	}
-	/*Imprimir lista de funcionários*/
-	ImprimeLista(&lista, "----Lista de funcionarios---");
 
-	while (1)
+	/*Imprimir lista de funcionários*/
+	ImprimeLista(&lista, "----Lista de funcionarios----");
+
+	/*exclui funcionarios*/
+	while (TRUE)
 	{	printf("\nInforme o codigo do funcionario a excluir:\n");
 		scanf("%d", &codigo);
 
 		if (codigo < 0)
 			break;
 		
-		if(Exclusao(&lista, codigo) == 0)
-			puts("Valor nao existe na lista");
+		if(ExcluiFuncionario(&lista, codigo) == FALSE)
+			puts("Codigo nao existe na lista.");
 		else
-			ImprimeLista(&lista, "----Lista de funcionário atualizada----\n");		
+			ImprimeLista(&lista, "----Lista de funcionário atualizada----");		
 	}
 
 	printf("Encerrando a aplicacao...\n");
@@ -71,28 +79,29 @@ void InicializaLista(TDescr *lista)
 {	lista->inicio = NULL;
 	lista->final = NULL;
 	lista->qtde = 0;
-	lista->somaSalario = 0;
+	lista->totalSalario = 0;
 }
 
-int Inclusao(TDescr *lista, int numero){
+int IncluiFuncionario(TDescr *lista, int num){
 	TNo *aux;
-	//char nome[30];
-	//float salario;
 
+	/* criando uma variável struct regFunc dinamicamente */
 	aux = (struct regFunc *) malloc(sizeof(struct regFunc));
 
-	if(!aux)
-	{	
-		return 0;
-	}
-	else
-	{	/* preenchendo os campos da variável criada dinamicamente */
-		aux->codigo= numero;
+	if(aux == NULL)
+		return FALSE;
+	
+	else{	
+		/* preenchendo os campos da variável criada dinamicamente */
+		aux->codigo= num;
 		aux->prox = NULL;
+		
 		printf("Informe o nome do funcionario\n");
 		scanf("%s", aux->nome);
+
 		printf("Informe o salário do funcionario\n");
-		scanf("%lf", &aux->salario);
+		scanf("%f", &aux->salario);
+
 		/* fazendo o encadeamento do novo nó na lista */
 		if (lista->inicio == NULL)
 			lista->inicio = aux;
@@ -100,69 +109,61 @@ int Inclusao(TDescr *lista, int numero){
 			lista->final->prox = aux;
 
 		lista->qtde = lista->qtde + 1;
-		lista->somaSalario = lista->somaSalario + aux->salario;
+		lista->totalSalario = lista->totalSalario + aux->salario;
 		lista->final = aux;
-		return 1;	
+		return TRUE;	
 	}
 }
 
-int Exclusao(TDescr *lista, int numero){
+void ImprimeLista(TDescr *lista, char *cabec){	
 	TNo *aux;
-	
-	/* Procurando o código informado na lista */
-	aux = lista->inicio;
-	lista->final = NULL;
-	while (aux != NULL)
-	{	if (aux->codigo == numero)
-			break;
-		
-		lista->final = aux;
-		aux = aux->prox;
-	}
-	
-	if (aux == NULL)
-		return 0;
-	else
-	{	if (lista->final == NULL)
-			lista->inicio = aux->prox;
-		else
-			lista->final->prox = aux->prox;
-		
-		if (aux == lista->final)
-			lista->final = lista->final;
-		
-		free(aux);
-		
-		lista->qtde = lista->qtde - 1;
-		lista->somaSalario = lista->somaSalario - aux->salario;
-		return 1;
-	}
-}
 
-void ImprimeLista(TDescr *lista, char *cabec)
-{	TNo *aux;
-	//int soma;
-
-	if (lista->inicio == NULL){
+	if (lista->inicio == NULL)
 		puts("Lista esta vazia");			
-	}
-
-	
-	else
-	{	printf("\n\n%s\n", cabec);
+	else{	
+		printf("\n\n%s\n", cabec);
 
 		aux = lista->inicio;
-		//menor = aux->valor;
-		//maior = aux->valor;
-		//soma = 0;
 
 		while (aux != NULL){
 			printf("Codigo: %d\nNome: %s\nSalario R$ %.2f\n\n", aux->codigo, aux->nome, aux->salario);
 			aux = aux->prox;
 		}
 		
-		printf("\n\nSoma Total dos Salarios R$ %.2f\n", lista->somaSalario);
-		printf("Média Salarial R$ %.2f\n", (lista->somaSalario/lista->qtde));
+		printf("Soma Total dos Salarios R$ %.2f\n", lista->totalSalario);
+		printf("Média Salarial R$ %.2f\n", (lista->totalSalario/lista->qtde));
 	}			
 }
 
+int ExcluiFuncionario(TDescr *lista, int num){
+	TNo *aux, *ant;
+	
+	/* Procurando o código informado na lista */
+	aux = lista->inicio;
+	ant = NULL;
+	while (aux != NULL){	
+		if (aux->codigo == num)
+			break;
+		
+		ant = aux;
+		aux = aux->prox;
+	}
+	
+	if (aux == NULL)
+		return FALSE;
+	else{
+		if (ant == NULL)
+			lista->inicio = aux->prox;
+		else
+			ant->prox = aux->prox;
+		
+		if (aux == lista->final)
+			lista->final = ant;
+		
+		free(aux);
+		
+		lista->qtde = lista->qtde - 1;
+		lista->totalSalario = lista->totalSalario - aux->salario;
+	}
+	return TRUE;
+}
