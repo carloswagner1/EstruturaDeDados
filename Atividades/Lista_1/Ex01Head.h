@@ -1,6 +1,7 @@
 /*Autor: Carlos Wagner Rodrigues da Silva*/
 
-/*Arquivo Fonte Header - lista de funcionários*/
+/*Exercicio_01*/
+/*Interface - lista de funcionários*/
 
 
 /*Structs-Typedefs*/

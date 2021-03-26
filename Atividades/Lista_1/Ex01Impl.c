@@ -1,6 +1,7 @@
 /*Autor: Carlos Wagner Rodrigues da Silva*/
 
-/*Arquivo Fonte Implementação - Lista de Funcionarios*/
+/*Exercicio_01*/
+/*Implementação - Lista de Funcionarios*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -35,7 +36,7 @@ int IncluiFuncionario(TDescr *lista, int num){
 		printf("Informe o nome do funcionario\n");
 		scanf("%s", aux->nome);
 
-		printf("Informe o salário do funcionario\n");
+		printf("Informe o salario do funcionario\n");
 		scanf("%f", &aux->salario);
 
 		/* fazendo o encadeamento do novo nó na lista */
@@ -67,7 +68,7 @@ void ImprimeLista(TDescr *lista, char *cabec){
 		}
 		
 		printf("Soma Total dos Salarios R$ %.2f\n", lista->totalSalario);
-		printf("Media Salarial R$ %.2f\n", (lista->totalSalario/lista->qtde));
+		printf("Média Salarial R$ %.2f\n", (lista->totalSalario/lista->qtde));
 	}			
 }
 

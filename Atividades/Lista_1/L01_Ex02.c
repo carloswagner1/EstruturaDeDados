@@ -1,5 +1,7 @@
 /*Autor: Carlos Wagner Rodrigues da Silva*/
 
+/*Lista_01 - Exercicio_02*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -8,150 +10,114 @@
 #define TRUE 1
 #define FALSE 0
 
-#define QTDE_FUNC 5001
+#define QTDE_FUNC 500
 
-/*Prototipos de Funcoes*/
-void InicializaLista(TDescr *);
-int IncluiFuncionario(TDescr *, int);
-void ImprimeLista(int, char *);
-int ExcluiFuncionario(TDescr *, int);
-
-int listaFunc[QTDE_FUNC];
-
-int main (void){
+typedef struct{
 	int codigo;
-	TDescr lista;
+	char nome[31];
+	float salario;
+} RegFunc;
 
-	/*inicializando os descritores da lista de funcionários*/
-	InicializaLista(&lista);
+void IncluirFunc (int, int);
+void ImprimeLista(int, char *);
+int ExcluiFunc (int, int);
+
+RegFunc lista[QTDE_FUNC];
+
+int main(){
+	//RegFunc *listafunc;
+	int codigo, final;
+
+	/*inicializando a variável de controle do fim da lista*/
+	final = -1;
 
 	printf("\n---- Lista 01 - Exercicio 01 ----\n");
-
-	/*inclui funcionarios*/
-	while (1){
+	
+	while (TRUE){
 		printf("\nInforme o codigo do funcionario (ou < 0 para encerrar):\n");
 		scanf("%d", &codigo);
 
 		if (codigo < 0)
 			break;
 
-		if (IncluiFuncionario(&lista, codigo) == FALSE){
-			puts("Memória insuficiente para a operacao.");
-			return 3;
-		}
+		if (final == QTDE_FUNC)
+			puts("Lista esta cheia");
+		else
+			IncluirFunc(++final, codigo);		
 	}
 
-	/*Imprimir lista de funcionários*/
-	ImprimeLista(&lista, "----Lista de funcionarios---");
+	/*imprimindo valores da lista*/	
+	ImprimeLista(final, "----Lista de funcionarios----");
 
-	/*exclui funcionarios*/
-	while (1)
-	{	printf("\nInforme o codigo do funcionario a excluir:\n");
+	/*exlui funcionarios*/
+	while (TRUE){
+		printf("\nInforme o codigo do funcionario a excluir (ou < 0 para encerrar):\n");
 		scanf("%d", &codigo);
 
 		if (codigo < 0)
 			break;
 		
-		if(ExcluiFuncionario(&lista, codigo) == FALSE)
-			puts("Valor nao existe na lista");
-		else
-			ImprimeLista(&lista, "----Lista de funcionário atualizada----");		
+		if(ExcluiFunc(final, codigo)== FALSE)
+			puts ("Codigo informado nao existe na lista.");
+		else{
+			final--;
+			ImprimeLista(final, "----Lista de funcionarios atualizada----");
+		}
 	}
 
 	printf("Encerrando a aplicacao...\n");
 
-	return 0;	
+	return 0;
 }
 
-void InicializaLista(TDescr *lista)
-{	lista->inicio = NULL;
-	lista->final = NULL;
-	lista->qtde = 0;
-	lista->totalSalario = 0;
-}
+void IncluirFunc (int final, int cod){
+	lista[final].codigo = cod;
 
-int IncluiFuncionario(TDescr *lista, int num){
-	TNo *aux;
+	printf("Informe o nome do funcionario\n");
+	scanf("%s", lista[final].nome);
 
-	/* criando uma variável struct regFunc dinamicamente */
-	aux = (struct regFunc *) malloc(sizeof(struct regFunc));
-
-	if(aux == NULL)
-		return FALSE;
+	printf("Informe o salario do funcionario\n");
+	scanf("%f", &lista[final].salario);
 	
-	else{	
-		/* preenchendo os campos da variável criada dinamicamente */
-		aux->codigo= num;
-		aux->prox = NULL;
-		
-		printf("Informe o nome do funcionario\n");
-		scanf("%s", aux->nome);
-
-		printf("Informe o salário do funcionario\n");
-		scanf("%lf", &aux->salario);
-
-		/* fazendo o encadeamento do novo nó na lista */
-		if (lista->inicio == NULL)
-			lista->inicio = aux;
-		else
-			lista->final->prox = aux;
-
-		lista->qtde = lista->qtde + 1;
-		lista->totalSalario = lista->totalSalario + aux->salario;
-		lista->final = aux;
-		return TRUE;	
-	}
 }
 
-void ImprimeLista(int, char *cabec){	
-	TNo *aux;
+void ImprimeLista(int final, char *cabec){
+	int p = 0;
+	float soma= 0;
 
-	if (lista->inicio == NULL)
-		puts("Lista esta vazia");			
-	else{	
+	if (final < 0)
+		puts("Lista esta vazia.");
+	else{
 		printf("\n\n%s\n", cabec);
 
-		aux = lista->inicio;
-
-		while (aux != NULL){
-			printf("Codigo: %d\nNome: %s\nSalario R$ %.2f\n\n", aux->codigo, aux->nome, aux->salario);
-			aux = aux->prox;
+		while (p <= final){
+			printf("Codigo: %d\nNome: %s\nSalario R$ %.2f\n\n", 
+			lista[p].codigo, lista[p].nome, lista[p].salario);
+			soma = soma + lista[p].salario;
+			p++;	
 		}
-		
-		printf("Soma Total dos Salarios R$ %.2f\n", lista->totalSalario);
-		printf("Média Salarial R$ %.2f\n", (lista->totalSalario/lista->qtde));
-	}			
+		printf("Soma Total dos Salarios R$ %.2f\n", soma);
+		printf("Média Salarial R$ %.2f\n", soma/p);
+	}
+
 }
 
-int ExcluiFuncionario(TDescr *lista, int num){
-	TNo *aux, *ant;
-	
-	/* Procurando o código informado na lista */
-	aux = lista->inicio;
-	ant = NULL;
-	while (aux != NULL){	
-		if (aux->codigo == num)
+int ExcluiFunc (int final, int cod){
+	int p = 0;
+
+	while (p <= final){
+		if (lista[p].codigo == cod)
 			break;
-		
-		ant = aux;
-		aux = aux->prox;
+		p = p + 1;
 	}
-	
-	if (aux == NULL)
+
+	if (p > final)
 		return FALSE;
 	else{
-		if (ant == NULL)
-			lista->inicio = aux->prox;
-		else
-			ant->prox = aux->prox;
-		
-		if (aux == lista->final)
-			lista->final = ant;
-		
-		free(aux);
-		
-		lista->qtde = lista->qtde - 1;
-		lista->totalSalario = lista->totalSalario - aux->salario;
+		while (p < final){
+			lista[p] = lista[p + 1];
+			p++;
+		}
 	}
 	return TRUE;
 }

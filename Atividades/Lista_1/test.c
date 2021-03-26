@@ -16,13 +16,13 @@ typedef struct{
 
 void IncluirFunc (int, int);
 void ImprimeLista(int, char *);
-void ExcluiFunc (int, int);
+int ExcluiFunc (int, int);
 
 RegFunc lista[QTDE_FUNC];
 
 int main(){
 	//RegFunc *listafunc;
-	int codigo, final, p;
+	int codigo, final;
 
 	/*inicializando a variável de controle do fim da lista*/
 	final = -1;
@@ -37,26 +37,28 @@ int main(){
 			break;
 
 		if (final == QTDE_FUNC)
-			puts("Lista estah cheia");
+			puts("Lista esta cheia");
 		else
 			IncluirFunc(++final, codigo);		
 	}
 
 	/*imprimindo valores da lista*/	
-	if (final < 0)
-		puts("Lista esta vazia.");
-	else
-		ImprimeLista(final, "----Lista de funcionarios----");
+	ImprimeLista(final, "----Lista de funcionarios----");
 
 	/*exlui funcionarios*/
 	while (TRUE){
-		printf("\nInforme o codigo do funcionario a excluir:\n");
+		printf("\nInforme o codigo do funcionario a excluir (ou < 0 para encerrar):\n");
 		scanf("%d", &codigo);
 
 		if (codigo < 0)
 			break;
-
-		ImprimeLista(final, "----Lista de funcionário atualizada----");
+		
+		if(ExcluiFunc(final, codigo)== FALSE)
+			puts ("Codigo informado nao existe na lista.");
+		else{
+			final--;
+			ImprimeLista(final, "----Lista de funcionarios atualizada----");
+		}
 	}
 
 	printf("Encerrando a aplicacao...\n");
@@ -70,7 +72,7 @@ void IncluirFunc (int final, int cod){
 	printf("Informe o nome do funcionario\n");
 	scanf("%s", lista[final].nome);
 
-	printf("Informe o salário do funcionario\n");
+	printf("Informe o salario do funcionario\n");
 	scanf("%f", &lista[final].salario);
 	
 }
@@ -79,19 +81,39 @@ void ImprimeLista(int final, char *cabec){
 	int p = 0;
 	float soma= 0;
 
-	printf("\n\n%s\n", cabec);
+	if (final < 0)
+		puts("Lista esta vazia.");
+	else{
+		printf("\n\n%s\n", cabec);
 
-	while (p <= final){
-		printf("Codigo: %d\nNome: %s\nSalario R$ %.2f\n\n", 
-		lista[p].codigo, lista[p].nome, lista[p].salario);
-		soma = soma + lista[p].salario;
-		p++;	
+		while (p <= final){
+			printf("Codigo: %d\nNome: %s\nSalario R$ %.2f\n\n", 
+			lista[p].codigo, lista[p].nome, lista[p].salario);
+			soma = soma + lista[p].salario;
+			p++;	
+		}
+		printf("Soma Total dos Salarios R$ %.2f\n", soma);
+		printf("Média Salarial R$ %.2f\n", soma/p);
 	}
-	printf("Soma Total dos Salarios R$ %.2f\n", soma);
-	printf("Média Salarial R$ %.2f\n", soma/p);
-	
+
 }
 
-void ExcluiFunc (int final, int cod){
+int ExcluiFunc (int final, int cod){
 	int p = 0;
+
+	while (p <= final){
+		if (lista[p].codigo == cod)
+			break;
+		p = p + 1;
+	}
+
+	if (p > final)
+		return FALSE;
+	else{
+		while (p < final){
+			lista[p] = lista[p + 1];
+			p++;
+		}
+	}
+	return TRUE;
 }
