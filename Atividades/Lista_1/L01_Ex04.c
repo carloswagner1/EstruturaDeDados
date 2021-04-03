@@ -24,33 +24,47 @@ typedef struct{
 /*Prototipos de Funcoes*/
 void InicializaPilha(DPilha *);
 int Empilha(DPilha *, char);
+int ListaVazia(DPilha *);
+int ComparaElem(DPilha *, char);
 int Desempilha(DPilha *);
+
 
 int main(){
 	char expr[21];
 	DPilha descr;
+
 	
 	/*Inicilizando o descritor da pilha*/
 	InicializaPilha(&descr);
 
-	printf("Informe a expressão matemática (ou X para sair): \n");
+	printf("Informe a expressão matemática: \n");
 	scanf("%s", expr);
 
-	/*if(expr[0] == 'X')
-		break;*/
+	/*Varrendo a Expressao*/
+	/*Empilhando os delimitadores de abertura*/
+	for(int i=0; i <= strlen(expr); i++){
+		if(expr[i]=='(' || expr[i]=='[' || expr[i]== '{'){
+			Empilha(&descr, expr[i]);
+		}
 
-	for(int i=0; i < strlen(expr); i++){
-			if(expr[i]=='(')
-				Empilha(&descr, expr[i]);
-			else if(expr[i]==')')
+		/*Testando delimitadores de fechamento*/
+		if(ListaVazia(&descr)){
+			if(expr[i] == ')' || expr[i] == ']' || expr[i] == '}'){
+				descr.qtde = 1;
+				break;
+			}	
+			
+		}else{
+			if(ComparaElem(&descr, expr[i])==TRUE)
 				Desempilha(&descr);
+		}
 	}
 
 
-	if(descr.topo == NULL)
-		printf("Expressao balanceada\n");
+	if(descr.qtde == 0)
+		printf("Expressao valida. Balanceamento ok.\n");
 	else
-		printf("Expressao nao balanceada\n");
+		printf("Erro!!Expressao invalida\n");
 
 	return 0;
 }
@@ -67,8 +81,7 @@ int Empilha(DPilha *descr,char s){
 	aux = (struct regLista *) malloc(sizeof(struct regLista));
 
 	if(aux == NULL)
-		return FALSE;
-	
+		return FALSE;	
 	else{
 		/*preenchendo os campos da variável*/
 		aux->delimitador = s;
@@ -81,20 +94,36 @@ int Empilha(DPilha *descr,char s){
 	
 }
 
+int ListaVazia(DPilha *descr){
+	if(descr->topo == NULL)
+		return TRUE;
+	else
+		return FALSE;
+}
+
+int ComparaElem(DPilha *descr, char c){
+	TLista *aux;
+
+	aux = descr->topo;
+
+	if(c ==')' && aux->delimitador == '(')
+		return TRUE;
+	else if(c == ']' && aux->delimitador == '[')
+		return TRUE;
+	else if(c == '}' && aux->delimitador == '{')
+		return TRUE;
+	else
+		return FALSE;
+}
+
 int Desempilha(DPilha *descr){
 	TLista *aux;
 
-	if(descr->topo != NULL){
-		aux = descr->topo;
-		descr->topo = descr->topo->prox;
-		descr->qtde--;
+	aux = descr->topo;
+	descr->topo = descr->topo->prox;
+	descr->qtde--;
 
-		free(aux);
-		return TRUE;
-	}else{
-		return FALSE;
-	}
-
-	
-	
+	free(aux);
+	return TRUE;	
 }
+
