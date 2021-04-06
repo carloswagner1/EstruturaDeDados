@@ -39,6 +39,7 @@ int main (void){
 	/*inicializando os descritores da lista de funcionários*/
 	InicializaLista(&lista);
 
+	/*lopping do Menu Inicial*/
 	do{
 		printf("\n---- LISTA 01 - EXERCICIO 01 ----\n\n");
 		printf("Informe a opcao desejada\n");
