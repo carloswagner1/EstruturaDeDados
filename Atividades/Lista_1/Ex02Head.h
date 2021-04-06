@@ -3,6 +3,7 @@
 /*Exercício_02*/
 /*Interface - lista de funcionários*/
 
+
 /*Typedef*/
 typedef struct{
 	int codigo;

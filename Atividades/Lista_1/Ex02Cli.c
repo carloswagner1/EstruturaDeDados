@@ -11,9 +11,7 @@
 
 #define TRUE 1
 #define FALSE 0
-
-
-#define QTDE_FUNC 500
+#define QTDE_FUNC 5001
 
 int main(){
 	//RegFunc *listafunc;
