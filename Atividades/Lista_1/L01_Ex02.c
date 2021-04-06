@@ -31,7 +31,7 @@ int main(){
 	/*inicializando a variável de controle do fim da lista*/
 	final = -1;
 
-	printf("\n---- Lista 01 - Exercicio 01 ----\n");
+	printf("\n---- Lista 01 - Exercicio 02 ----\n");
 	
 	while (TRUE){
 		printf("\nInforme o codigo do funcionario (ou < 0 para encerrar):\n");
