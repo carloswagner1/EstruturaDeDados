@@ -97,9 +97,7 @@ int main (void){
 			default:
 			printf("Digite uma opcao valida!!!\n");
 		}
-
-	
-	
+			
 	}while(opcao!=0);
 
 	return 0;	
