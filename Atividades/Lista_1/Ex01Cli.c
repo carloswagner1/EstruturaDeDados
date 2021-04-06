@@ -14,46 +14,73 @@
 
 
 int main (void){
-	int codigo;
+	int codigo, opcao;
 	TDescr lista;
 
 	/*inicializando os descritores da lista de funcionários*/
 	InicializaLista(&lista);
 
-	printf("\n---- LISTA 01 - EXERCICIO 01 ----\n");
+	do{
+		printf("\n---- LISTA 01 - EXERCICIO 01 ----\n\n");
+		printf("Informe a opcao desejada\n");
+		printf("1 - Incluir funcionario\n");
+		printf("2 - Excluir funcionario\n");
+		printf("3 - Listar funcionarios cadastrados\n");
+		printf("0 - Encerrar o programa\n\n");
+		printf("Opcao: ");
 
-	/*inclui funcionarios*/
-	while (TRUE){
-		printf("\nInforme o codigo do funcionario (ou < 0 para encerrar):\n");
-		scanf("%d", &codigo);
+		scanf("%d", &opcao);
 
-		if (codigo < 0)
+		switch(opcao){
+			case 1:
+				/*inclui funcionarios*/
+				while (TRUE){
+					printf("\nInforme o codigo do funcionario (ou < 0 para encerrar):\n");
+					scanf("%d", &codigo);
+
+					if (codigo < 0)
+						break;
+
+					if (IncluiFuncionario(&lista, codigo) == FALSE){
+						puts("Memoria insuficiente para a operacao.");
+						return 3;
+					}
+				}
 			break;
 
-		if (IncluiFuncionario(&lista, codigo) == FALSE){
-			puts("Memoria insuficiente para a operacao.");
-			return 3;
-		}
-	}
+			case 2:
+				/*exclui funcionario*/
+				while (TRUE)
+				{	printf("\nInforme o codigo do funcionario a excluir:\n");
+					scanf("%d", &codigo);
 
-	/*Imprimir lista de funcionários*/
-	ImprimeLista(&lista, "----Lista de funcionarios----");
-
-	/*exclui funcionario*/
-	while (TRUE)
-	{	printf("\nInforme o codigo do funcionario a excluir (ou < 0 para encerrar):\n");
-		scanf("%d", &codigo);
-
-		if (codigo < 0)
-			break;
+					if (codigo < 0)
+					break;
 		
-		if(ExcluiFuncionario(&lista, codigo) == FALSE)
-			puts("Codigo informado nao existe na lista.");
-		else
-			ImprimeLista(&lista, "----Lista de funcionarios atualizada----");		
-	}
+					if(ExcluiFuncionario(&lista, codigo) == FALSE)
+						puts("Codigo informado nao existe na lista.");
+					else
+					printf("Lista de funcionarios atualizada.\n");
 
-	printf("Encerrando a aplicacao...\n");
+				}
+			break;
+
+			case 3:
+				/*Imprimir lista de funcionários*/
+				ImprimeLista(&lista, "----Lista de funcionarios----");
+			break;
+
+			case 0:
+				printf("Encerrando a aplicacao...\n");
+			break;
+
+			default:
+			printf("Digite uma opcao valida!!!\n");
+		}
+
+	
+	
+	}while(opcao!=0);
 
 	return 0;	
 }
