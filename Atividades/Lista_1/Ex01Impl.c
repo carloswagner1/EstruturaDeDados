@@ -1,6 +1,6 @@
 /*Autor: Carlos Wagner Rodrigues da Silva*/
 
-/*Exercicio_01*/
+/*Exercicio_01 */
 /*Implementação - Lista de Funcionarios*/
 
 #include <stdio.h>
