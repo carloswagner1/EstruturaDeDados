@@ -2,7 +2,6 @@
 
 /*Exercicio_02*/
 /*Implementação - Lista de Funcionarios*/
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -45,7 +44,6 @@ void ImprimeLista(int final, char *cabec){
 		printf("Soma Total dos Salarios R$ %.2f\n", soma);
 		printf("Média Salarial R$ %.2f\n", soma/p);
 	}
-
 }
 
 int ExcluiFunc (int final, int cod){

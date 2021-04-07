@@ -1,7 +1,6 @@
 /*Autor: Carlos Wagner Rodrigues da Silva*/
 
 /*Lista_01 - Exercicio_02*/
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -94,7 +93,6 @@ int main(){
 
 	}while(opcao!=0);	
 	
-
 	return 0;
 }
 
