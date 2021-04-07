@@ -11,7 +11,7 @@
 
 #define TRUE 1
 #define FALSE 0
-#define QTDE_FUNC 5001
+#define QTDE_FUNC 5000
 
 int main(){
 	//RegFunc *listafunc;
@@ -31,8 +31,6 @@ int main(){
 		printf("Opcao: ");
 
 		scanf("%d", &opcao);
-
-
 
 		switch(opcao){
 			case 1:

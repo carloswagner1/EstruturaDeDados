@@ -20,6 +20,7 @@ int main (void){
 	/*inicializando os descritores da lista de funcionários*/
 	InicializaLista(&lista);
 
+	/*looping Menu Inicial*/
 	do{
 		printf("\n---- LISTA 01 - EXERCICIO 01 ----\n\n");
 		printf("Informe a opcao desejada\n");
@@ -60,7 +61,7 @@ int main (void){
 					if(ExcluiFuncionario(&lista, codigo) == FALSE)
 						puts("Codigo informado nao existe na lista.");
 					else
-					printf("Lista de funcionarios atualizada.\n");
+						printf("Lista de funcionarios atualizada.\n");
 
 				}
 			break;

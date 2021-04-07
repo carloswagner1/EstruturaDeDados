@@ -11,7 +11,7 @@
 
 #define TRUE 1
 #define FALSE 0
-#define QTDE_FUNC 5001
+#define QTDE_FUNC 5000
 
 /*variável global*/
 RegFunc lista[QTDE_FUNC]; 
