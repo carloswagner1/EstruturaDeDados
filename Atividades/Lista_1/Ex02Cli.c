@@ -2,22 +2,20 @@
 
 /*Exercicio_02*/
 /*Cliente - Lista de Funcionarios*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
 #include "Ex02Head.h"
 
-#define TRUE 1
-#define FALSE 0
-#define QTDE_FUNC 5000
-
+/*Funcao main*/
 int main(){
-	//RegFunc *listafunc;
-	int codigo, final, opcao;
+	int codigo, opcao;
+	TDescr lista;
 
-	/*inicializando a variável de controle do fim da lista*/
-	final = -1;
+	/*inicializando os descritores da lista de funcionários*/
+	InicializaLista(&lista);
 
 	/*looping Menu Inicial*/
 	do{
@@ -41,10 +39,10 @@ int main(){
 					if (codigo < 0)
 					break;
 
-					if (final == QTDE_FUNC)
-						puts("Lista esta cheia");
-					else
-					IncluirFunc(++final, codigo);		
+					if (IncluiFuncionario(&lista, codigo) == FALSE){
+						puts("Memoria insuficiente para a operacao.");
+						return 3;
+					}		
 				}
 			break;
 
@@ -57,18 +55,16 @@ int main(){
 					if (codigo < 0)
 					break;
 		
-					if(ExcluiFunc(final, codigo)== FALSE)
+					if(ExcluiFuncionario(&lista, codigo)== FALSE)
 						puts ("Codigo informado nao existe na lista.");
-					else{
-						final--;
+					else
 						printf("Lista de funcionarios atualizada.\n");
-					}
 				}
 			break;
 
 			case 3:
 				/*Imprimir lista de funcionários*/
-				ImprimeLista(final, "----Lista de funcionarios----");
+				ImprimeLista(&lista, "----Lista de funcionarios----");
 			break;
 
 			case 0:
@@ -76,7 +72,7 @@ int main(){
 			break;
 
 			default:
-			printf("Digite uma opcao valida!!!\n");
+				printf("Digite uma opcao valida!!!\n");
 		}
 
 	}while(opcao!=0);	

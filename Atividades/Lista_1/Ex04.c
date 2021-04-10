@@ -10,16 +10,17 @@
 #define TRUE 1
 #define FALSE 0
 
-struct regLista{
+struct regPilha{
 	char delimitador;
-	struct regLista *prox;
+	struct regPilha *prox;
 };
-typedef struct regLista TLista;
+
+typedef struct regPilha TPilha;
 
 typedef struct{
-	TLista *topo;
+	TPilha *topo;
 	int qtde;
-} DPilha;
+}DPilha;
 
 /*Prototipos de Funcoes*/
 void InicializaPilha(DPilha *);
@@ -32,7 +33,7 @@ int Desempilha(DPilha *);
 int main(){
 	char expr[21];
 	DPilha descr;
-
+	int i=0;
 	
 	/*Inicilizando o descritor da pilha*/
 	InicializaPilha(&descr);
@@ -42,7 +43,7 @@ int main(){
 
 	/*Varrendo a Expressao*/
 	/*Empilhando os delimitadores de abertura*/
-	for(int i=0; i <= strlen(expr); i++){
+	while(i <= strlen(expr)){
 		if(expr[i]=='(' || expr[i]=='[' || expr[i]== '{'){
 			Empilha(&descr, expr[i]);
 		}
@@ -58,6 +59,7 @@ int main(){
 			if(ComparaElem(&descr, expr[i])==TRUE)
 				Desempilha(&descr);
 		}
+		i++;
 	}
 
 
@@ -75,10 +77,10 @@ void InicializaPilha(DPilha * descr){
 }
 
 int Empilha(DPilha *descr,char s){
-	TLista *aux;
+	TPilha *aux;
 
-	/* criando uma variável struct TLista dinamicamente*/
-	aux = (struct regLista *) malloc(sizeof(struct regLista));
+	/* criando uma variável struct TPilha dinamicamente*/
+	aux = (struct regPilha *) malloc(sizeof(struct regPilha));
 
 	if(aux == NULL)
 		return FALSE;	
@@ -102,7 +104,7 @@ int ListaVazia(DPilha *descr){
 }
 
 int ComparaElem(DPilha *descr, char c){
-	TLista *aux;
+	TPilha *aux;
 
 	aux = descr->topo;
 
@@ -117,7 +119,7 @@ int ComparaElem(DPilha *descr, char c){
 }
 
 int Desempilha(DPilha *descr){
-	TLista *aux;
+	TPilha *aux;
 
 	aux = descr->topo;
 	descr->topo = descr->topo->prox;

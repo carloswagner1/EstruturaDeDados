@@ -8,60 +8,64 @@
 #include <math.h>
 #include "Ex02Head.h"
 
-#define TRUE 1
-#define FALSE 0
-#define QTDE_FUNC 5000
-
-/*variável global*/
-RegFunc lista[QTDE_FUNC]; 
-
-void IncluirFunc (int final, int cod){
-	lista[final].codigo = cod;
-
-	printf("Informe o nome do funcionario\n");
-	scanf("%s", lista[final].nome);
-
-	printf("Informe o salario do funcionario\n");
-	scanf("%f", &lista[final].salario);
-	
+void InicializaLista(TDescr *lst){
+	lst->final = -1;
 }
 
-void ImprimeLista(int final, char *cabec){
-	int p = 0;
-	float soma= 0;
+int IncluiFuncionario (TDescr *lst, int num){
+	if (lst->final == QTDE_FUNC)
+		return FALSE;
+	else{
+		lst->lista[++(lst->final)].codigo = num;
+	
+		printf("Informe o nome do funcionario\n");
+		scanf("%s", lst->lista[(lst->final)].nome);
 
-	if (final < 0)
+		printf("Informe o salario do funcionario\n");
+		scanf("%f", &lst->lista[(lst->final)].salario);
+	return TRUE;
+	}
+}
+
+void ImprimeLista(TDescr *lst, char *cabec){
+	int p = 0;
+	float soma = 0;
+
+	if (lst->final == -1)
 		puts("Lista esta vazia.");
 	else{
 		printf("\n\n%s\n", cabec);
 
-		while (p <= final){
+		while (p <= lst->final){
 			printf("Codigo: %d\nNome: %s\nSalario R$ %.2f\n\n", 
-			lista[p].codigo, lista[p].nome, lista[p].salario);
-			soma = soma + lista[p].salario;
+			lst->lista[p].codigo,
+			lst->lista[p].nome,
+			lst->lista[p].salario);
+ 
+			soma = soma + lst->lista[p].salario; 
 			p++;	
 		}
 		printf("Soma Total dos Salarios R$ %.2f\n", soma);
 		printf("Média Salarial R$ %.2f\n", soma/p);
 	}
+
 }
 
-int ExcluiFunc (int final, int cod){
+int ExcluiFuncionario(TDescr *lst, int num){
 	int p = 0;
 
-	while (p <= final){
-		if (lista[p].codigo == cod)
-			break;
+	while (p <= lst->final && lst->lista[p].codigo != num){
 		p = p + 1;
 	}
 
-	if (p > final)
+	if (p > lst->final)
 		return FALSE;
 	else{
-		while (p < final){
-			lista[p] = lista[p + 1];
+		while (p < lst->final){
+			lst->lista[p] = lst->lista[p + 1];
 			p++;
 		}
+		lst->final = lst->final -1;
+		return TRUE;
 	}
-	return TRUE;
 }

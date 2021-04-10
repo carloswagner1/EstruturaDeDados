@@ -1,18 +1,27 @@
 /*Autor: Carlos Wagner Rodrigues da Silva*/
 
 /*Exercício_02*/
-/*Interface - lista de funcionários*/
+/*Interface - Lista de funcionários*/
 
+#define TRUE 1
+#define FALSE 0
 
-/*Typedef*/
+#define QTDE_FUNC 5000
+
+/*Structs-Typedefs*/
 typedef struct{
 	int codigo;
 	char nome[31];
 	float salario;
-} RegFunc;
+} regFunc;
 
-/*Protótipo*/
-void IncluirFunc (int, int);
-void ImprimeLista(int, char *);
-int ExcluiFunc (int, int);
+typedef struct{
+	int final;
+	regFunc lista[QTDE_FUNC];
+}TDescr;
 
+/*Protótipo de Funcoes*/
+void InicializaLista(TDescr *);
+int IncluiFuncionario(TDescr *, int);
+void ImprimeLista(TDescr *, char *);
+int ExcluiFuncionario(TDescr *, int);

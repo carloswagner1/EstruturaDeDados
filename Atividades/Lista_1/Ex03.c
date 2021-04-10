@@ -40,6 +40,7 @@ int main (void){
 
 	/*inicializando os descritores da lista1*/
 	InicializaLista(&lista1);
+
 	/*incluindo os itens da lista1*/
 	printf("Lista 1\n");
 	while(1){
@@ -55,9 +56,10 @@ int main (void){
 		}
 	}
 
-	/*inicializando os descritores da lista1*/
+	/*inicializando os descritores da lista2*/
 	InicializaLista(&lista2);
-	/*incluindo os itens da lista1*/
+
+	/*incluindo os itens da lista2*/
 	printf("\nLista 2\n");
 	while(1){
 		printf("Informe um valor( ou < 0 para encerrar):\n");
@@ -72,6 +74,7 @@ int main (void){
 		}
 	}
 	ImprimeLista(&lista1, "Lista 1");
+
 	ImprimeLista(&lista2, "Lista 2");
 
 	InicializaLista(&lista3);
@@ -84,7 +87,7 @@ int main (void){
 }
 
 
-/*fuinção inicializa*/
+/*função inicializa*/
 void InicializaLista(TDescr *lista){
 	lista->inicio = NULL;
 	lista->final = NULL;	

@@ -9,9 +9,7 @@
 #include <math.h>
 #include "Ex01Head.h"
 
-#define TRUE 1
-#define FALSE 0
-
+/*Funcao main*/
 int main (void){
 	int codigo, opcao;
 	TDescr lista;
@@ -19,7 +17,7 @@ int main (void){
 	/*inicializando os descritores da lista de funcionários*/
 	InicializaLista(&lista);
 
-	/*looping Menu Inicial*/
+	/*lopping do Menu Inicial*/
 	do{
 		printf("\n---- LISTA 01 - EXERCICIO 01 ----\n\n");
 		printf("Informe a opcao desejada\n");
@@ -50,8 +48,8 @@ int main (void){
 
 			case 2:
 				/*exclui funcionario*/
-				while (TRUE)
-				{	printf("\nInforme o codigo do funcionario a excluir:\n");
+				while (TRUE){
+					printf("\nInforme o codigo do funcionario a excluir:\n");
 					scanf("%d", &codigo);
 
 					if (codigo < 0)
@@ -61,7 +59,6 @@ int main (void){
 						puts("Codigo informado nao existe na lista.");
 					else
 						printf("Lista de funcionarios atualizada.\n");
-
 				}
 			break;
 
@@ -75,11 +72,9 @@ int main (void){
 			break;
 
 			default:
-			printf("Digite uma opcao valida!!!\n");
+				printf("Digite uma opcao valida!!!\n");
 		}
-
-	
-	
+			
 	}while(opcao!=0);
 
 	return 0;	

@@ -1,8 +1,10 @@
 /*Autor: Carlos Wagner Rodrigues da Silva*/
 
 /*Exercicio_01*/
-/*Interface - lista de funcionários*/
+/*Interface - Lista de funcionários*/
 
+#define TRUE 1
+#define FALSE 0
 
 /*Structs-Typedefs*/
 struct regFunc {

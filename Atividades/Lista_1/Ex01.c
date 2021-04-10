@@ -32,6 +32,7 @@ int IncluiFuncionario(TDescr *, int);
 void ImprimeLista(TDescr *, char *);
 int ExcluiFuncionario(TDescr *, int);
 
+/*Funcao main*/
 int main (void){
 	int codigo, opcao;
 	TDescr lista;
@@ -70,8 +71,8 @@ int main (void){
 
 			case 2:
 				/*exclui funcionario*/
-				while (TRUE)
-				{	printf("\nInforme o codigo do funcionario a excluir:\n");
+				while (TRUE){
+					printf("\nInforme o codigo do funcionario a excluir:\n");
 					scanf("%d", &codigo);
 
 					if (codigo < 0)
@@ -80,8 +81,7 @@ int main (void){
 					if(ExcluiFuncionario(&lista, codigo) == FALSE)
 						puts("Codigo informado nao existe na lista.");
 					else
-					printf("Lista de funcionarios atualizada.\n");
-
+						printf("Lista de funcionarios atualizada.\n");
 				}
 			break;
 
@@ -95,7 +95,7 @@ int main (void){
 			break;
 
 			default:
-			printf("Digite uma opcao valida!!!\n");
+				printf("Digite uma opcao valida!!!\n");
 		}
 			
 	}while(opcao!=0);
@@ -103,8 +103,7 @@ int main (void){
 	return 0;	
 }
 
-void InicializaLista(TDescr *lista)
-{	lista->inicio = NULL;
+void InicializaLista(TDescr *lista){	lista->inicio = NULL;
 	lista->final = NULL;
 	lista->qtde = 0;
 	lista->totalSalario = 0;

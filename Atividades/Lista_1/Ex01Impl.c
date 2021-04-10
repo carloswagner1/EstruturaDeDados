@@ -9,11 +9,7 @@
 #include <math.h>
 #include "Ex01Head.h"
 
-#define TRUE 1
-#define FALSE 0
-
-void InicializaLista(TDescr *lista)
-{	lista->inicio = NULL;
+void InicializaLista(TDescr *lista){	lista->inicio = NULL;
 	lista->final = NULL;
 	lista->qtde = 0;
 	lista->totalSalario = 0;
