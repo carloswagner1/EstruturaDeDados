@@ -1,3 +1,6 @@
+/*URI 1167 - Acampamento de Férias*/
+/*Carlos Wagner Rodrigues da Silva*/
+
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
