@@ -1,3 +1,7 @@
+/*Soma de Frações*/
+/*Carlos Wagner Rodrigues da silva*/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
