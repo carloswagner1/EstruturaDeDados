@@ -14,10 +14,10 @@ int main (void){
 	int codigo, opcao;
 	TDescr lista;
 
-	/*inicializando os descritores da lista de funcionários*/
-	InicializaLista(&lista);
+	/*inicializalizando os descritores da lista de funcionários*/
+	inicializalizaLista(&lista);
 
-	/*lopping do Menu Inicial*/
+	/*lopping do Menu inicializal*/
 	do{
 		printf("\n---- LISTA 01 - EXERCICIO 01 ----\n\n");
 		printf("Informe a opcao desejada\n");

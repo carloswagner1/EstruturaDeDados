@@ -23,7 +23,7 @@ typedef struct {
 } TDescr;
 
 /*Prototipos de Funcoes*/
-void InicializaLista(TDescr *);
+void inicializalizaLista(TDescr *);
 int IncluiItem(TDescr *, float);
 void ImprimeLista(TDescr *, char *);
 void SomaListas(TDescr *, TDescr *, TDescr *);
@@ -38,8 +38,8 @@ int main (void){
 
 	printf("\n---- EXERCICIO 03 ----\n\n");
 
-	/*inicializando os descritores da lista1*/
-	InicializaLista(&lista1);
+	/*inicializalizando os descritores da lista1*/
+	inicializalizaLista(&lista1);
 	/*incluindo os itens da lista1*/
 	printf("Lista 1\n");
 	while(1){
@@ -55,8 +55,8 @@ int main (void){
 		}
 	}
 
-	/*inicializando os descritores da lista1*/
-	InicializaLista(&lista2);
+	/*inicializalizando os descritores da lista1*/
+	inicializalizaLista(&lista2);
 	/*incluindo os itens da lista1*/
 	printf("\nLista 2\n");
 	while(1){
@@ -74,7 +74,7 @@ int main (void){
 	ImprimeLista(&lista1, "Lista 1");
 	ImprimeLista(&lista2, "Lista 2");
 
-	InicializaLista(&lista3);
+	inicializalizaLista(&lista3);
 
 	SomaListas(&lista1, &lista2, &lista3);
 
@@ -84,8 +84,8 @@ int main (void){
 }
 
 
-/*fuinção inicializa*/
-void InicializaLista(TDescr *lista){
+/*fuinção inicializaliza*/
+void inicializalizaLista(TDescr *lista){
 	lista->inicio = NULL;
 	lista->final = NULL;	
 }

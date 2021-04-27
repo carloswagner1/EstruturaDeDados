@@ -27,7 +27,7 @@ int main(){
 	//RegFunc *listafunc;
 	int codigo, final;
 
-	/*inicializando a variável de controle do fim da lista*/
+	/*inicializalizando a variável de controle do fim da lista*/
 	final = -1;
 
 	printf("\n---- Lista 01 - Exercicio 02 ----\n");

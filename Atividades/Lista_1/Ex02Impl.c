@@ -8,7 +8,7 @@
 #include <math.h>
 #include "Ex02Head.h"
 
-void InicializaLista(TDescr *lst){
+void inicializalizaLista(TDescr *lst){
 	lst->final = -1;
 }
 

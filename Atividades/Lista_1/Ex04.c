@@ -23,7 +23,7 @@ typedef struct{
 }DPilha;
 
 /*Prototipos de Funcoes*/
-void InicializaPilha(DPilha *);
+void inicializalizaPilha(DPilha *);
 int Empilha(DPilha *, char);
 int ListaVazia(DPilha *);
 int ComparaElem(DPilha *, char);
@@ -36,7 +36,7 @@ int main(){
 	int i=0;
 	
 	/*Inicilizando o descritor da pilha*/
-	InicializaPilha(&descr);
+	inicializalizaPilha(&descr);
 
 	printf("Informe a expressão matemática: \n");
 	scanf("%s", expr);
@@ -71,7 +71,7 @@ int main(){
 	return 0;
 }
 
-void InicializaPilha(DPilha * descr){
+void inicializalizaPilha(DPilha * descr){
 	descr->topo = NULL;
 	descr->qtde = 0;
 }

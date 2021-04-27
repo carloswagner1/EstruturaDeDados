@@ -10,29 +10,30 @@
 #define TRUE 1
 #define FALSE 0
 
-struct regLista{
+struct regPilha{
 	char delimitador;
-	struct regLista *prox;
+	struct regPilha *prox;
 };
-typedef struct regLista TLista;
+
+typedef struct regPilha TPilha;
 
 typedef struct{
-	TLista *topo;
+	TPilha *topo;
 	int qtde;
-} DPilha;
+}DPilha;
 
 /*Prototipos de Funcoes*/
 void inicializalizaPilha(DPilha *);
 int Empilha(DPilha *, char);
 int ListaVazia(DPilha *);
-int ComparaElem(DPilha *, char);
+int ComparaElem(char, char);
 int Desempilha(DPilha *);
 
 
 int main(){
 	char expr[21];
 	DPilha descr;
-
+	int i=0;
 	
 	/*Inicilizando o descritor da pilha*/
 	inicializalizaPilha(&descr);
@@ -42,29 +43,22 @@ int main(){
 
 	/*Varrendo a Expressao*/
 	/*Empilhando os delimitadores de abertura*/
-	for(int i=0; i <= strlen(expr); i++){
+	while(i <= strlen(expr)){
 		if(expr[i]=='(' || expr[i]=='[' || expr[i]== '{'){
 			Empilha(&descr, expr[i]);
 		}
 
-		/*Testando delimitadores de fechamento*/
-		if(ListaVazia(&descr)){
-			if(expr[i] == ')' || expr[i] == ']' || expr[i] == '}'){
-				descr.qtde = 1;
-				break;
-			}	
-			
-		}else{
-			if(ComparaElem(&descr, expr[i])==TRUE)
-				Desempilha(&descr);
+		if(expr[i] == ')' || expr[i] == ']' || expr[i] == '}'){
+			ComparaElem((Desempilha(&descr), expr[i])==TRUE);
+			descr.qtde=1;
 		}
+		i++;
 	}
 
-
 	if(descr.qtde == 0)
-		printf("Expressao valida. Balanceamento ok.\n");
+		printf("\nExpressao valida.\nBalanceamento ok.\n");
 	else
-		printf("Erro!!Expressao invalida\n");
+		printf("\nErro!!!\nExpressao invalida.\n");
 
 	return 0;
 }
@@ -75,10 +69,10 @@ void inicializalizaPilha(DPilha * descr){
 }
 
 int Empilha(DPilha *descr,char s){
-	TLista *aux;
+	TPilha *aux;
 
-	/* criando uma variável struct TLista dinamicamente*/
-	aux = (struct regLista *) malloc(sizeof(struct regLista));
+	/* criando uma variável struct TPilha dinamicamente*/
+	aux = (struct regPilha *) malloc(sizeof(struct regPilha));
 
 	if(aux == NULL)
 		return FALSE;	
@@ -95,35 +89,32 @@ int Empilha(DPilha *descr,char s){
 }
 
 int ListaVazia(DPilha *descr){
-	if(descr->topo == NULL)
-		return TRUE;
-	else
-		return FALSE;
+	return(descr->topo == NULL);
 }
 
-int ComparaElem(DPilha *descr, char c){
-	TLista *aux;
-
-	aux = descr->topo;
-
-	if(c ==')' && aux->delimitador == '(')
+int ComparaElem(char a, char c){
+	
+	if(c ==')' && a == '(')
 		return TRUE;
-	else if(c == ']' && aux->delimitador == '[')
+	else if(c == ']' && a == '[')
 		return TRUE;
-	else if(c == '}' && aux->delimitador == '{')
+	else if(c == '}' && a == '{')
 		return TRUE;
 	else
 		return FALSE;
 }
 
 int Desempilha(DPilha *descr){
-	TLista *aux;
+	char a;
+	if(ListaVazia(descr)){
+		descr->qtde = 1;
+		exit(1);
+	}
 
-	aux = descr->topo;
+	a = descr->topo->delimitador;
 	descr->topo = descr->topo->prox;
 	descr->qtde--;
 
-	free(aux);
-	return TRUE;	
+	return a;	
 }
 

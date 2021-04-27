@@ -27,7 +27,7 @@ typedef struct {
 } TDescr;
 
 /*Prototipos de Funcoes*/
-void InicializaLista(TDescr *);
+void inicializalizaLista(TDescr *);
 int IncluiFuncionario(TDescr *, int);
 void ImprimeLista(TDescr *, char *);
 int ExcluiFuncionario(TDescr *, int);
@@ -36,8 +36,8 @@ int main (void){
 	int codigo;
 	TDescr lista;
 
-	/*inicializando os descritores da lista de funcionários*/
-	InicializaLista(&lista);
+	/*inicializalizando os descritores da lista de funcionários*/
+	inicializalizaLista(&lista);
 
 	printf("\n---- LISTA 01 - EXERCICIO 01 ----\n");
 
@@ -77,7 +77,7 @@ int main (void){
 	return 0;	
 }
 
-void InicializaLista(TDescr *lista)
+void inicializalizaLista(TDescr *lista)
 {	lista->inicio = NULL;
 	lista->final = NULL;
 	lista->qtde = 0;

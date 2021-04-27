@@ -21,7 +21,7 @@ typedef struct{
 }TDescr;
 
 /*Protótipo de Funcoes*/
-void InicializaLista(TDescr *);
+void inicializalizaLista(TDescr *);
 int IncluiFuncionario(TDescr *, int);
 void ImprimeLista(TDescr *, char *);
 int ExcluiFuncionario(TDescr *, int);
