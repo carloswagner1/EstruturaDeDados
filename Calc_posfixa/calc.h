@@ -1,5 +1,4 @@
 /* Interface da calculadora */
-
 /*Struct-typedefs*/
 
 struct no {
