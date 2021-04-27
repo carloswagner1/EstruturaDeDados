@@ -1,3 +1,6 @@
+/*Sete*/
+/*Carlos Wagner Rodrigues da Silva*/
+
 #include <stdio.h>
 
 #define true 1
