@@ -1,3 +1,7 @@
+
+/*Bilhetes Falsos*/
+/*Carlos Wagner Rodrigeus da Silva*/
+
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
