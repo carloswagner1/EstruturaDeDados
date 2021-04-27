@@ -1,3 +1,6 @@
+/*Figurinhas*/
+/*Carlos Wagner Rodrigues da Silva*/
+
 #include <stdio.h>
 
 int main(void){
