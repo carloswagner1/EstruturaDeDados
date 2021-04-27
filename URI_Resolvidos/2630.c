@@ -1,3 +1,7 @@
+/*Escala de Cinza*/
+/*Carlos Wagner Rodrigues da Silva*/
+
+
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
