@@ -1,3 +1,6 @@
+/*Huaauhahhuahau*/
+/*Carlos Wagner Rodrigues da Silva*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -56,7 +59,7 @@ int main(){
    	       		}       
         	}   
     	}
-    }
+    
 
     if(descr.qtde == 0){
     	printf("S\n");
