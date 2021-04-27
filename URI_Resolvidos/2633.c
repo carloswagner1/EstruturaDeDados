@@ -1,3 +1,6 @@
+/*Churras do Yuri*/
+/*Carlos Wagner Rodrigues da Silva*/
+
 #include <stdio.h>
 
 
