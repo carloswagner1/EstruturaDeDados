@@ -1,5 +1,4 @@
 /*Autor: Carlos Wagner Rodrigues da Silva*/
-
 /*Exercicio_02*/
 /*Cliente - Lista de Funcionarios*/
 

@@ -1,5 +1,4 @@
 /*Autor: Carlos Wagner Rodrigues da Silva*/
-
 /*Exercício_02*/
 /*Interface - Lista de funcionários*/
 

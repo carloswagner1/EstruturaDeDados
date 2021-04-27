@@ -1,5 +1,4 @@
 /*Autor: Carlos Wagner Rodrigues da Silva*/
-
 /*Lista_01 - Exercicio_04*/
 
 #include <stdio.h>
