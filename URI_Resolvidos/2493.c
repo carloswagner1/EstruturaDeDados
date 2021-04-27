@@ -1,3 +1,6 @@
+/*Jogo do Operador*/
+/*Carlos Wagner Rodrigues da Silva*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
