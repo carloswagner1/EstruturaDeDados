@@ -1,6 +1,7 @@
 /*A Fila de Desempregados*/
 /*Carlos Wagner Rodrigues da Silva*/
 
+
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
