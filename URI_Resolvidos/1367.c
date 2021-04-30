@@ -33,15 +33,15 @@ int ExcluiFuncionario(TDescr *, int);*/
 
 
 int main(){
-	int n, i, tempoTotal, acertos;
+	int n; /*, i, tempoTotal, acertos;*/
 	TDescr lista;
-	char *idQuestoes;
+	/*char idQuestoes[26];
 	int erros[n];
 
 	i = 0;
 	tempoTotal = 0;
 	acertos = 0;
-	memset(erros, 0, sizeof(erros));
+	memset(erros, 0, sizeof(erros));*/
 
 
 	scanf("%d", &n);
@@ -51,7 +51,7 @@ int main(){
 
 		IncluiLista(&lista, n);
 
-		if (procuraQuestao(idQuestoes, lista.lista[i].id)){
+		/*if (procuraQuestao(idQuestoes, lista.lista[i].id)){
 			if (strcmp(lista.lista[i].resposta, "correct") == 0){
 				acertos++;
 				tempoTotal += lista.lista[i].tempo + erros[procuraQuestaoPosi(idQuestoes, lista.lista[i].id)];
@@ -80,14 +80,14 @@ int main(){
 			// No banco e soma 20 segundos no vetor de penalidades na posição da questão;
 			i++;
 
-		}
+		}*/
 
 		scanf("%d", &n);
 	}
-	if (acertos == 0)
+/*	if (acertos == 0)
 		printf("0 0\n");
 	else
-		printf("%d %d\n", acertos, tempoTotal);
+		printf("%d %d\n", acertos, tempoTotal);*/
 
 
 	return 0;
@@ -106,7 +106,7 @@ void IncluiLista (TDescr *lst, int num){
 	}
 	
 }
-
+/*
 // Função verifica se uma questão existe no banco de questões;
 int procuraQuestao( char *idQuestoes, char *id)
 {
@@ -122,7 +122,7 @@ int procuraQuestao( char *idQuestoes, char *id)
 int procuraQuestaoPosi(char *idQuestoes, char *id)
 {
 
-	unsigned short i = 0;
+	int i = 0;
 
 	while (idQuestoes[i])
 	{
@@ -133,3 +133,4 @@ int procuraQuestaoPosi(char *idQuestoes, char *id)
 	}
 
 }
+*/
