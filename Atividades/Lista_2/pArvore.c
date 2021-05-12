@@ -12,6 +12,9 @@ void ImprimeArvore(TNo *, int);
 int ContaNos(TNo *);
 int SomaNos(TNo *);
 int ContaPares(TNo *);
+void ImprimeMaior(TNo *r);
+void ImprimeMenor(TNo *r);
+int ContaFolhas(TNo *);
 
 int main(void)
 {	TNo *raiz = NULL, *aux, *pai;
@@ -41,6 +44,13 @@ int main(void)
 	
 	printf("\n\nA arvore possui %d elementos:\n", ContaNos(raiz));
 	ImprimeArvore(raiz, 0);
+	//aux = AchaMaior(raiz);
+	//printf("\n\n%d\n", AchaMaior(raiz));
+	ImprimeMaior(raiz);
+	ImprimeMenor(raiz);
+	printf("\n\nA arvore possui %d folhas.\n", ContaFolhas(raiz));
+
+
 	
 	return 0;
 }
@@ -81,4 +91,41 @@ void ImprimeArvore(TNo *r, int n)
 		ImprimeArvore(r->esq, n + 1);
 		ImprimeArvore(r->dir, n + 1);
 	}
+}
+
+void ImprimeMaior(TNo *r)
+{	if (r != NULL){
+		r=r->dir;
+		if (r->dir == NULL)
+			printf("Maior valor contido na arvore: %d\n", r->valor);
+		else
+			ImprimeMaior(r);
+	}
+}
+
+void ImprimeMenor(TNo *r)
+{	if (r != NULL){
+		r=r->esq;
+		if (r->esq == NULL)
+			printf("Menor valor contido na arvore: %d\n", r->valor);
+		else
+			ImprimeMenor(r);
+	}
+}
+
+int ContaFolhas(TNo *r)
+{	int soma = 0;
+	if (r == NULL)
+		return 0;
+	else{
+		if(r->esq == NULL && r->dir == NULL)
+			soma = soma +1;					
+		else{
+			ContaFolhas(r->esq);
+			ContaFolhas(r->dir);
+		}
+
+	}
+
+	return soma;		
 }
