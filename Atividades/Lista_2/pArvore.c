@@ -44,8 +44,6 @@ int main(void)
 	
 	printf("\n\nA arvore possui %d elementos:\n", ContaNos(raiz));
 	ImprimeArvore(raiz, 0);
-	//aux = AchaMaior(raiz);
-	//printf("\n\n%d\n", AchaMaior(raiz));
 	ImprimeMaior(raiz, 0);
 	ImprimeMenor(raiz, 0);
 	printf("\n\nA arvore possui %d folhas.\n", ContaFolhas(raiz));
