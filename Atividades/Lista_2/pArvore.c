@@ -15,6 +15,7 @@ int ContaPares(TNo *);
 void ImprimeMaior(TNo *r, int);
 void ImprimeMenor(TNo *r, int);
 int ContaFolhas(TNo *);
+int Altura(TNo *);
 
 int main(void)
 {	TNo *raiz = NULL, *aux, *pai;
@@ -44,11 +45,11 @@ int main(void)
 	
 	printf("\n\nA arvore possui %d elementos:\n", ContaNos(raiz));
 	ImprimeArvore(raiz, 0);
+	printf("\n");
 	ImprimeMaior(raiz, 0);
 	ImprimeMenor(raiz, 0);
-	printf("\n\nA arvore possui %d folhas.\n", ContaFolhas(raiz));
-
-
+	printf("A arvore possui %d folhas.\n", ContaFolhas(raiz));
+	printf("Altura da arvore: %d\n", Altura(raiz));
 	
 	return 0;
 }
@@ -118,4 +119,17 @@ int ContaFolhas(TNo *r)
 		  folha = folha + ContaFolhas(r->esq) + ContaFolhas(r->dir);
 	}
 	return folha;
+}
+
+int Altura(TNo *r){
+	if(r == NULL)
+		return -1;
+	else{
+		int sae = Altura(r->esq);
+		int sad = Altura(r->dir);
+		if (sae < sad)
+			return sad + 1;
+		else
+			return sae + 1;
+	}
 }
