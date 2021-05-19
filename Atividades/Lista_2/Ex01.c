@@ -16,7 +16,8 @@ void ImprimeMaior(TNo *r, int);
 void ImprimeMenor(TNo *r, int);
 int ContaFolhas(TNo *);
 int Altura(TNo *);
-int buscaElemento(TNo*, int);
+/*int buscaElemento(TNo*, int);*/
+TNo* busca (TNo*, int );
 
 int main(void)
 {	TNo *raiz = NULL, *aux, *pai;
@@ -54,7 +55,7 @@ int main(void)
 
  	printf("Informe um valor para pesquisar:\n");
  	scanf("%d", &numero);
- 	if(buscaElemento(raiz, numero))
+ 	if(busca(raiz, numero))
  		printf("Elemento encontrado na arvore.\n");
  	else
  		printf("Este elemento não existe na arvore.\n");
@@ -142,12 +143,13 @@ int Altura(TNo *r){
 	}
 }
 
-int buscaElemento(TNo* r, int num) {
-  
-  if(r == NULL) { /* Se a árvore estiver vazia, então retorna 0 */
-    return 0;
-  }
-  
-  /* O operador lógico || interrompe a busca quando o elemento for encontrado */
-  return r->valor==num || buscaElemento(r->esq, num) || buscaElemento(r->dir, num);
+TNo* busca (TNo* r, int v)
+{
+if (r == NULL) 
+	return NULL;
+else if (r->valor > v) 
+	return busca (r->esq, v);
+else if (r->valor < v) 
+	return busca (r->dir, v);
+else return r;
 }
