@@ -10,7 +10,7 @@
 #define FALSE 0
 
 /*Structs-Typedefs*/
-struct regList {
+struct regList{
 	float valor; 
 	struct regList *prox;
 };
