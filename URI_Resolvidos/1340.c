@@ -1,3 +1,6 @@
+/*Eu Posso Adivinhar a Estrutura de Dados!*/
+/*Carlos Wagner Rodrigues da Silva*/
+
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
