@@ -21,7 +21,7 @@ typedef struct {
 } TDescr;
 
 /*Prototipos de Funcoes*/
-void inicializalizaLista(TDescr *);
+void inicializaLista(TDescr *);
 int IncluiItem(TDescr *, float);
 
 int main({
@@ -30,8 +30,9 @@ int main({
 }
 
 /*Funções*/
+
 /*função inicializaliza*/
-void inicializalizaLista(TDescr *lista){
+void inicializaLista(TDescr *lista){
 	lista->inicio = NULL;
 	lista->final = NULL;	
 }
