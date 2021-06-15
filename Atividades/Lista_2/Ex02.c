@@ -21,7 +21,7 @@ int main(void)
 	int numero;
 	
 	while (1)
-	{	printf("\nInforme o valor:\n"); 
+	{	printf("\nInforme o valor ou -1 para encerrar:\n"); 
 		scanf("%d", &numero);
 		
 		if (numero < 0) break;
