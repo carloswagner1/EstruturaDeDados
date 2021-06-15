@@ -145,7 +145,7 @@ void ImprimeLista(int n, TDescr *lst){
 	  	else
      		printf("As %d cidades beneficiadas:\n", n);
     	for (i = 1; i <= n; i++){
-    	printf("Cidade %d: %s Populacao: %d Area %.2f PIB: %.2f IDH: %.3f\n",
+    		printf("Cidade %d: %s Populacao: %d Area %.2f PIB: %.2f IDH: %.3f\n",
 			i, lst->lista[i].cidade, lst->lista[i].populacao, 
 			lst->lista[i].area, lst->lista[i].PIB, lst->lista[i].IDH);
     	}
