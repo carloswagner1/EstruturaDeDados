@@ -3,13 +3,10 @@
 /*Carlos Wagner Rodrigues da Silva*/
 /*Exercício_03*/
 
-
-
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
 #include <stdlib.h>
-
 
 #define TRUE  1
 #define FALSE 0
