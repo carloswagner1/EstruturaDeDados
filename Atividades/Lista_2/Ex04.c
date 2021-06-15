@@ -1,3 +1,8 @@
+/*Autores:*/
+/*Jessica Maria dos Santos*/
+/*Carlos Wagner Rodrigues da Silva*/
+/*Exercício_04*/
+
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
