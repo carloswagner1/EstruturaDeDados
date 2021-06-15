@@ -1,3 +1,6 @@
+/* Autores: Jessica Maria dos Santos
+			Carlos Wagner Rodrigues da Silva*/
+
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
@@ -18,7 +21,6 @@ void ImprimeMaior(TNo *r, int);
 void ImprimeMenor(TNo *r, int);
 int ContaFolhas(TNo *);
 int Altura(TNo *);
-/*int buscaElemento(TNo*, int);*/
 TNo* busca (TNo*, int );
 
 int main(void)
@@ -26,7 +28,7 @@ int main(void)
 	int numero;
 	
 	while (1)
-	{	printf("\nInforme o valor:\n"); 
+	{	printf("\nInforme o valor ou -1 para encerrar:\n"); 
 		scanf("%d", &numero);
 		
 		if (numero < 0) break;
@@ -55,13 +57,15 @@ int main(void)
 	printf("A arvore possui %d folhas.\n", ContaFolhas(raiz));
 	printf("Altura da arvore: %d\n", Altura(raiz));
 
- 	printf("Informe um valor para pesquisar:\n");
- 	scanf("%d", &numero);
- 	if(busca(raiz, numero))
- 		printf("Elemento encontrado na arvore.\n");
- 	else
- 		printf("Este elemento não existe na arvore.\n");
-	
+ 	while(1){
+ 		printf("Informe um valor para pesquisar ou -1 para encerrar:\n");
+ 		scanf("%d", &numero);
+ 		if(numero < 0) break;
+	 	if(busca(raiz, numero))
+ 			printf("Elemento encontrado na arvore.\n");
+ 		else
+ 			printf("Este elemento não existe na arvore.\n");
+	}
 	return 0;
 }
 
