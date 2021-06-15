@@ -1,6 +1,7 @@
-/* 	Autores:
-	Jessica Maria dos Santos
-	Carlos Wagner Rodrigues da Silva*/
+/*Autores:*/
+/*Jessica Maria dos Santos*/
+/*Carlos Wagner Rodrigues da Silva*/
+/*Exercício_02*/
 
 #include <stdio.h>
 #include <math.h>
